@@ -1,0 +1,127 @@
+#include <Stepper.h>
+#include <Servo.h>
+
+const int trigPin = 2;
+const int echoPin = 3;
+
+float duration, distance;
+
+int stepsPerRevolution = 2048;
+int rpm = 15; 
+
+Stepper MovementStepper (stepsPerRevolution, 8, 10, 9, 11);
+Servo rotatingServo; 
+int pos = 45; 
+
+void setup() {
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  Serial.begin(9600);
+
+  MovementStepper.setSpeed(rpm);
+  rotatingServo.attach(4); 
+  rotatingServo.write(45); 
+}
+
+void loop() {
+  Serial.print("ENTERED LOOP");
+
+  for (pos = 45; pos <= 135; pos += 15) {
+    rotatingServo.write(pos); 
+    
+    Serial.print("Position: ");
+    Serial.print(pos);
+    delay(1000);
+
+    digitalWrite(trigPin, LOW);
+    delayMicroseconds(2);
+    digitalWrite(trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin, LOW);
+
+    duration = pulseIn(echoPin, HIGH);
+    distance = (duration*.0343)/2;
+    Serial.print("Distance: ");
+    Serial.println(distance);
+
+    int distance45;
+    int distance60;
+    int distance75;
+    int distance90;
+    int distance105;
+    int distance120;
+    int distance135; 
+
+    int nextDirection; 
+
+    if (pos == 45) {
+      distance45 = distance;
+    }
+    else if (pos == 60) {
+      distance60 = distance;
+    }
+    else if (pos == 75) {
+      distance75 = distance;
+    }
+    else if (pos == 90) {
+      distance90 = distance;
+    }
+    else if (pos == 105) {
+      distance105 = distance;
+    }
+    else if (pos == 120) {
+      distance120 = distance;
+    }
+    else {
+      distance135 = distance; 
+    }
+
+    // if ((distance45 < distance90) && (distance45 < distance135)) {
+    //   nextDirection = 45; 
+    // }
+    // else if ((distance90 < distance45) && (distance90 < distance135)) {
+    //   nextDirection = 90; 
+    // }
+    // else {
+    //   nextDirection = 135; 
+    // }
+
+    int moveDirection = minDistance(distance45, distance60, distance75, distance90, distance105, distance120, distance135);
+    rotatingServo.write(moveDirection); 
+    Serial.print("Next direction");
+    Serial.print(moveDirection);
+  }
+  
+  if (distance > 0) {
+    MovementStepper.step(-500);
+  }
+}
+
+
+
+int minDistance(int compareDistance1, int compareDistance2, int compareDistance3, int compareDistance4, int compareDistance5, int compareDistance6, int compareDistance7) {
+  int nextDirection; 
+  if ((compareDistance1 < compareDistance2) && (compareDistance1 < compareDistance3) && (compareDistance1 < compareDistance4) && (compareDistance1 < compareDistance5) && (compareDistance1 < compareDistance6) && (compareDistance1 < compareDistance7)){
+    nextDirection = compareDistance1; 
+  }
+  else if ((compareDistance2 < compareDistance1) && (compareDistance2 < compareDistance3) && (compareDistance2 < compareDistance4) && (compareDistance2 < compareDistance5) && (compareDistance2 < compareDistance6) && (compareDistance2 < compareDistance7)){
+    nextDirection = compareDistance2; 
+  }
+  else if ((compareDistance3 < compareDistance1) && (compareDistance3 < compareDistance2) && (compareDistance3 < compareDistance4) && (compareDistance3 < compareDistance5) && (compareDistance3 < compareDistance6) && (compareDistance3 < compareDistance7)){
+    nextDirection = compareDistance3; 
+  }
+  else if ((compareDistance4 < compareDistance1) && (compareDistance4 < compareDistance2) && (compareDistance4 < compareDistance3) && (compareDistance4 < compareDistance5) && (compareDistance4 < compareDistance6) && (compareDistance4 < compareDistance7)){
+    nextDirection = compareDistance4; 
+  }
+  else if ((compareDistance5 < compareDistance1) && (compareDistance5 < compareDistance2) && (compareDistance5 < compareDistance3) && (compareDistance5 < compareDistance4) && (compareDistance5 < compareDistance6) && (compareDistance5 < compareDistance7)){
+    nextDirection = compareDistance5; 
+  }
+  else if ((compareDistance6 < compareDistance1) && (compareDistance6 < compareDistance2) && (compareDistance6 < compareDistance3) && (compareDistance6 < compareDistance4) && (compareDistance6 < compareDistance5) && (compareDistance6 < compareDistance7)){
+    nextDirection = compareDistance6; 
+  }
+  else {
+    nextDirection = compareDistance7; 
+  }
+
+  return nextDirection; 
+}
