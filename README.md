@@ -1,5 +1,5 @@
 # Space-Sweeper
-Cutie Hackathon 2024 Entry
+Cutie Hackathon 2024 Entry <br/>
 By: Allison Lee, Anoushka Limaye, Zehua Bao & Rebecca Jennings
 
 # Inspiration
