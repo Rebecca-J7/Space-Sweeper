@@ -1,4 +1,6 @@
 # Space-Sweeper
+Cutie Hackathon 2024 Entry
+
 # Inspiration
 Space Junk - unused or forgotten satellite modules in space still orbiting Earth
 Accumulation of space junk potentially leads to cascading collisions
@@ -46,5 +48,3 @@ Most Sustainable
 1st Overall
 2nd Overall
 3rd Overall
-
-# Code
