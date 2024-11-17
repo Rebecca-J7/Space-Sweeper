@@ -1,5 +1,6 @@
 # Space-Sweeper
 Cutie Hackathon 2024 Entry
+By: Allison Lee, Anoushka Limaye, Zehua Bao & Rebecca Jennings
 
 # Inspiration
 Space Junk - unused or forgotten satellite modules in space still orbiting Earth <br/>
