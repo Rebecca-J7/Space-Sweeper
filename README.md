@@ -7,16 +7,16 @@ Space Junk - unused or forgotten satellite modules in space still orbiting Earth
 Accumulation of space junk potentially leads to cascading collisions <br/>
 Collision with space debris causes damage to operation satellites, posing a risk to spacecraft and astronauts <br/>
 
+# Why It is Important
+The module will help identify and remove masses of space junk <br/>
+Helps reduce the Kessler Syndrome - where the chain of reaction collisions in earth’s orbit creates space debris that makes orbit unusable <br/>
+Similar implementation could be done to tackle waste build-up on earth <br/>
+
 # What Our Project Does
 Scans for the nearest object /trash <br/>
 Travels towards that trash while continuously scanning for more trash/objects <br/>
 Sweeps up the object/trash <br/>
 Mission Accomplished! We made more space in space! <br/>
-
-# Why It is Important
-The module will help identify and remove masses of space junk <br/>
-Helps reduce the Kessler Syndrome - where the chain of reaction collisions in earth’s orbit creates space debris that makes orbit unusable <br/>
-Similar implementation could be done to tackle waste build-up on earth <br/>
 
 # How We Built It
 Arduino Kit <br/>
